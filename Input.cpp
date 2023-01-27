@@ -21,7 +21,7 @@ void Input::Initialize(WinApp* winApp)
     result = keyboard->SetDataFormat(&c_dfDIKeyboard); // 標準形式
     assert(SUCCEEDED(result));
     // 排他制御レベルのセット
-    result = keyboard->SetCooperativeLevel(winApp->GetHend(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE | DISCL_NOWINKEY);
+    result = keyboard->SetCooperativeLevel(winApp->GetHwnd(), DISCL_FOREGROUND | DISCL_NONEXCLUSIVE | DISCL_NOWINKEY);
     assert(SUCCEEDED(result));
 }
 
