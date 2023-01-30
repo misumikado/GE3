@@ -36,9 +36,9 @@ void SpriteCommon::Initialize(DirectXCommon* dxCommon)
 
 
 
-	ComPtr<ID3DBlob> vsBlob;//頂点シェーダオブジェクト
-	ComPtr<ID3DBlob> psBlob;//ピクセルシェーダーオブジェクト
-	ComPtr<ID3DBlob> errorBlob;//エラーオブジェクト
+	ID3DBlob* vsBlob;//頂点シェーダオブジェクト
+	ID3DBlob* psBlob;//ピクセルシェーダーオブジェクト
+	ID3DBlob*errorBlob;//エラーオブジェクト
 
 	//頂点シェーダの読み込みとコンパイル
 	result = D3DCompileFromFile(
@@ -174,7 +174,7 @@ void SpriteCommon::Initialize(DirectXCommon* dxCommon)
 	rootSignatureDesc.pStaticSamplers = &samplerDesc;
 	rootSignatureDesc.NumStaticSamplers = 1;
 	//シグネチャのシリアライズ
-	ComPtr<ID3D10Blob> rootSigBlob;
+	ID3D10Blob* rootSigBlob;
 	result = D3D12SerializeRootSignature(&rootSignatureDesc, D3D_ROOT_SIGNATURE_VERSION_1_0, &rootSigBlob, &errorBlob);
 	assert(SUCCEEDED(result));
 	result = dxCommon_->GetDevice()->CreateRootSignature(0, rootSigBlob->GetBufferPointer(), rootSigBlob->GetBufferSize(), IID_PPV_ARGS(&rootSignature));
